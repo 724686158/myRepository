@@ -1,0 +1,161 @@
+package GAMEBASE;
+import java.util.Observable;
+
+public abstract class Plane extends Observable  {
+	private String name;                   //飞机名称
+	private int type;                      //飞机类型（1：战斗机， 2：轰炸机， 3：预警机）
+	private String manufacturer;           //制造厂商
+	private String owner;                  //拥有者
+	private double speed;				   //最大速度  单位：千米/秒
+	private double rigidity;			   //硬度（血量）0～100000
+	private double horizon;                //视野  单位：千米
+	private double cannonshot;             //射程  单位：千米
+	private double load;                   //负载  单位：千克
+	private double firepower;              //火力
+	private double hatred;                 //仇恨（被集中火力攻击的权值）0～100000
+	private double agility;                //机动性（回避伤害的能力,0~100）
+	private double cost;				   //造价    单位：万元
+
+	public void initialization() {		   //飞机参数初始化
+	} 
+	public void manufacture()              //生产出厂
+	{
+		this.initialization();
+	}
+	
+	public void measurementsChanged()
+	{
+		setChanged();
+		notifyObservers();
+	}
+
+	public void inspect()  //飞机检查自身状态
+	{
+		measurementsChanged();
+	}
+	public void crash()//坠毁
+	{
+		System.out.println(this.getName() + "坠毁了");
+	}       
+	
+	public void display()                  //
+	{
+		System.out.println("");
+		System.out.println("_____________________________________________________");
+		System.out.println("	以下是'" + this.getName() + "'的详细参数");
+		System.out.println("	制造厂商：" + this.getManufacturer());
+		System.out.println("	最大速度：" + this.getSpeed() + "千米/秒");
+		System.out.println("	硬度（血量）：" + this.getRigidity());
+		System.out.println("	视野：" + this.getHorizon() + "千米");
+		System.out.println("	射程：" + this.getCannonshot() + "千米");
+		System.out.println("	仇恨：" + this.getHatred());
+		System.out.println("	机动性：" + this.getAgility());
+		System.out.println("	造价：" + this.getCost() + "万元");
+		System.out.println("_____________________________________________________");
+		System.out.println("");
+	}
+	public Plane() {
+		super();
+	}
+	public Plane(Plane model) {
+		this.setType(model.getType());
+		this.setLoad(model.getLoad());
+		this.setFirepower(model.getFirepower());
+		this.setName(model.getName());
+		this.setManufacturer(model.getManufacturer());
+		this.setSpeed(model.getSpeed());
+		this.setRigidity(model.getRigidity());
+		this.setHorizon(model.getHorizon());
+		this.setCannonshot(model.getCannonshot());
+		this.setHatred(model.getHatred());
+		this.setAgility(model.getAgility());
+		this.setCost(model.getCost());
+	}
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public String getManufacturer() {
+		return manufacturer;
+	}
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+	public String getOwner() {
+		return owner;
+	}
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+	public double getSpeed() {
+		return speed;
+	}
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+	public double getRigidity() {
+		return rigidity;
+	}
+	public void setRigidity(double rigidity) {
+		this.rigidity = rigidity;
+	}
+	public double getHorizon() {
+		return horizon;
+	}
+	public void setHorizon(double horizon) {
+		this.horizon = horizon;
+	}
+	public double getCannonshot() {
+		return cannonshot;
+	}
+	public void setCannonshot(double cannonshot) {
+		this.cannonshot = cannonshot;
+	}
+	public double getLoad() {
+		return load;
+	}
+	public void setLoad(double load) {
+		this.load = load;
+	}
+	public double getFirepower() {
+		return firepower;
+	}
+	public void setFirepower(double firepower) {
+		this.firepower = firepower;
+	}
+	public double getHatred() {
+		return hatred;
+	}
+	public void setHatred(double hatred) {
+		this.hatred = hatred;
+	}
+	public double getAgility() {
+		return agility;
+	}
+	public void setAgility(double agility) {
+		this.agility = agility;
+	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	@Override
+	public String toString() {
+		return "Plane [name=" + name + ", type=" + type + ", manufacturer=" + manufacturer + ", owner=" + owner
+				+ ", speed=" + speed + ", rigidity=" + rigidity + ", horizon=" + horizon + ", cannonshot=" + cannonshot
+				+ ", load=" + load + ", firepower=" + firepower + ", hatred=" + hatred + ", agility=" + agility
+				+ ", cost=" + cost + "]";
+	}
+	
+}
